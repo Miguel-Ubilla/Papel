@@ -1,0 +1,13 @@
+[Desktop Entry]
+Name=Libreta
+GenericName=Editor de Texto
+Comment=Bloc de notas rápido con pestañas, recuperación ante cortes y búsqueda
+Exec=libreta %F
+Icon=io.github.libreta.editor
+Terminal=false
+Type=Application
+Categories=Utility;TextEditor;GNOME;GTK;
+MimeType=text/plain;
+StartupNotify=true
+Keywords=Text;Editor;Notes;Bloc;Notas;Libreta;
+

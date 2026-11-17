@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <defs>
+    <linearGradient id="bg_grad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#3584e4"/>
+      <stop offset="100%" stop-color="#1c71d8"/>
+    </linearGradient>
+    <linearGradient id="page_grad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#f6f6f6"/>
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#000000" flood-opacity="0.25"/>
+    </filter>
+  </defs>
+
+  <!-- Sombra y Tapa Posterior -->
+  <rect x="20" y="16" width="88" height="96" rx="12" fill="#15539e" filter="url(#shadow)"/>
+  <rect x="22" y="14" width="84" height="96" rx="10" fill="url(#bg_grad)"/>
+
+  <!-- Lomo de espiral / banda decorativa izquierda -->
+  <path d="M 22 24 C 22 18.5 26.5 14 32 14 L 38 14 L 38 110 L 32 110 C 26.5 110 22 105.5 22 100 Z" fill="#1a5fb4"/>
+
+  <!-- Hoja de papel interna -->
+  <rect x="42" y="22" width="58" height="80" rx="4" fill="url(#page_grad)"/>
+
+  <!-- Líneas de texto simuladas -->
+  <rect x="48" y="32" width="32" height="4" rx="2" fill="#3584e4"/>
+  <rect x="48" y="42" width="46" height="3" rx="1.5" fill="#c0bfbc"/>
+  <rect x="48" y="50" width="42" height="3" rx="1.5" fill="#c0bfbc"/>
+  <rect x="48" y="58" width="46" height="3" rx="1.5" fill="#c0bfbc"/>
+  <rect x="48" y="66" width="36" height="3" rx="1.5" fill="#c0bfbc"/>
+  <rect x="48" y="74" width="44" height="3" rx="1.5" fill="#c0bfbc"/>
+  <rect x="48" y="82" width="28" height="3" rx="1.5" fill="#e01b24"/>
+
+  <!-- Anillas de la libreta -->
+  <rect x="34" y="26" width="8" height="3" rx="1.5" fill="#deddda"/>
+  <rect x="34" y="42" width="8" height="3" rx="1.5" fill="#deddda"/>
+  <rect x="34" y="58" width="8" height="3" rx="1.5" fill="#deddda"/>
+  <rect x="34" y="74" width="8" height="3" rx="1.5" fill="#deddda"/>
+  <rect x="34" y="90" width="8" height="3" rx="1.5" fill="#deddda"/>
+</svg>
+

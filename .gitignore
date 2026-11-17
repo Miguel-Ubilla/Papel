@@ -1,0 +1,23 @@
+# Rust / Cargo
+/target/
+**/*.rs.bk
+
+# Paquetes Debian generados
+*.deb
+/debian_pkg/
+
+# Archivos temporales y de respaldo
+*~
+*.swp
+*.swo
+.DS_Store
+
+# IDEs y editores
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Logs y backups locales
+*.log
+*.tmp

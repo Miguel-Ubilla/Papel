@@ -1,0 +1,13 @@
+[Desktop Entry]
+Name=Papel
+GenericName=Editor de Texto
+Comment=Bloc de notas rápido con pestañas, recuperación ante cortes y búsqueda
+Exec=papel %F
+Icon=io.github.papel.editor
+Terminal=false
+Type=Application
+Categories=Utility;TextEditor;GNOME;GTK;
+MimeType=text/plain;
+StartupNotify=true
+Keywords=Text;Editor;Notes;Bloc;Notas;Papel;Documento;
+
