@@ -8,8 +8,12 @@ NC='\033[0m'
 VERSION="0.1.0-beta"
 ARCH="amd64"
 PKG_NAME="papel"
+OUTPUT_DIR="dist"
 DEB_NAME="${PKG_NAME}_${VERSION}_${ARCH}.deb"
+DEB_PATH="${OUTPUT_DIR}/${DEB_NAME}"
 STAGE_DIR="/tmp/papel_deb_stage"
+
+mkdir -p "$OUTPUT_DIR"
 
 echo -e "${BLUE}==>${NC} Compilando Papel en modo optimizado (Release)..."
 if [ -f "$HOME/.cargo/env" ]; then
@@ -48,13 +52,13 @@ install -m 755 target/release/papel "$STAGE_DIR/usr/bin/papel"
 install -m 644 assets/io.github.papel.editor.desktop "$STAGE_DIR/usr/share/applications/io.github.papel.editor.desktop"
 install -m 644 assets/io.github.papel.editor.svg "$STAGE_DIR/usr/share/icons/hicolor/scalable/apps/io.github.papel.editor.svg"
 
-echo -e "${BLUE}==>${NC} Empaquetando ${DEB_NAME} con dpkg-deb..."
-dpkg-deb --build --root-owner-group "$STAGE_DIR" "$DEB_NAME"
+echo -e "${BLUE}==>${NC} Empaquetando ${DEB_PATH} con dpkg-deb..."
+dpkg-deb --build --root-owner-group "$STAGE_DIR" "$DEB_PATH"
 
 rm -rf "$STAGE_DIR"
 
 echo -e "${GREEN}==> ¡Paquete .deb generado con éxito!${NC}"
-echo -e "Archivo creado: ${GREEN}${DEB_NAME}${NC}"
+echo -e "Archivo creado: ${GREEN}${DEB_PATH}${NC}"
 echo -e "Puedes instalarlo con:"
-echo -e "  sudo apt install ./${DEB_NAME}"
+echo -e "  sudo apt install ./${DEB_PATH}"
 echo -e "o haciendo doble clic sobre él en tu explorador de archivos."

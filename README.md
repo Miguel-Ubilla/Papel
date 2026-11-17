@@ -8,7 +8,7 @@
 [![GTK4](https://img.shields.io/badge/GTK-4.14-blue.svg?logo=gnome)](https://www.gtk.org/)
 [![Libadwaita](https://img.shields.io/badge/Libadwaita-1.5-blue.svg)](https://gnome.pages.gitlab.gnome.org/libadwaita/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
-[![Version](https://img.shields.io/badge/version-0.1.0--beta-purple.svg)](https://github.com/miguel/papel/releases)
+[![Download .deb](https://img.shields.io/badge/Descargar-.deb%20(316%20KB)-brightgreen.svg)](https://github.com/Miguel-Ubilla/Papel/raw/main/dist/papel_0.1.0-beta_amd64.deb)
 
 *Rápido como un bloc de notas tradicional, pero con la elegancia nativa de GNOME y protección total contra cortes de energía.*
 
@@ -54,35 +54,39 @@
 
 ## 🚀 Instalación en Ubuntu
 
-### Opción 1: Instalar paquete `.deb` (Recomendado para usuarios)
+### Opción 1: Descarga directa del paquete `.deb` (Recomendado)
 
-Si descargas o generas el archivo `.deb`:
+El paquete oficial precompilado está disponible en la carpeta [`dist/`](dist/):
 
-```bash
-sudo apt install ./papel_0.1.0-beta_amd64.deb
-```
-*(o simplemente haz doble clic sobre el archivo `.deb` para instalarlo desde la tienda de software de Ubuntu)*.
+📦 **[Descargar papel_0.1.0-beta_amd64.deb](https://github.com/Miguel-Ubilla/Papel/raw/main/dist/papel_0.1.0-beta_amd64.deb)** *(316 KB)*
+
+#### ¿Cómo instalarlo tras descargarlo?
+* **Gráficamente:** Haz doble clic sobre el archivo descargado para abrirlo con el instalador de paquetes de Ubuntu.
+* **O desde la terminal:**
+  ```bash
+  sudo apt install ./dist/papel_0.1.0-beta_amd64.deb
+  ```
 
 ---
 
 ### Opción 2: Compilar e instalar localmente desde código fuente
 
 #### 1. Requisitos previos
-Necesitas tener instalado el compilador de **Rust** y las cabeceras de **GTK4/Libadwaita**:
+Necesitas tener instalado el compilador de **Rust** y las cabeceras de desarrollo de **GTK4 / Libadwaita**:
 
 ```bash
-# Dependencias del sistema en Ubuntu
+# Dependencias en Ubuntu
 sudo apt update
 sudo apt install -y build-essential libgtk-4-dev libadwaita-1-dev
 
-# Rust (si aún no lo tienes instalado)
+# Compilador de Rust (si aún no lo tienes instalado)
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 ```
 
 #### 2. Clonar el repositorio
 ```bash
-git clone https://github.com/miguel/papel.git
-cd papel
+git clone https://github.com/Miguel-Ubilla/Papel.git
+cd Papel
 ```
 
 #### 3. Instalación local de usuario (sin necesidad de root/sudo)

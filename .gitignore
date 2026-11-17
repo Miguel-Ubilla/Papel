@@ -2,8 +2,9 @@
 /target/
 **/*.rs.bk
 
-# Paquetes Debian generados
+# Paquetes Debian fuera de la carpeta dist/
 *.deb
+!dist/*.deb
 /debian_pkg/
 
 # Archivos temporales y de respaldo
