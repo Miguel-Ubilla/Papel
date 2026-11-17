@@ -342,13 +342,13 @@ impl PapelApp {
                 .transient_for(&win_about)
                 .application_name("Papel")
                 .application_icon("io.github.papel.editor")
-                .developer_name("Miguel")
+                .developer_name("Miguel Ubilla")
                 .version("0.1.0-beta")
                 .comments("Bloc de notas moderno, rápido y seguro con pestañas, búsqueda y recuperación ante cortes de energía.")
                 .license_type(gtk4::License::MitX11)
-                .copyright("© 2026 Miguel. Licencia MIT (Permisiva y de libre uso).")
-                .website("https://github.com/miguel/papel")
-                .issue_url("https://github.com/miguel/papel/issues")
+                .copyright("© 2026 Miguel Ubilla. Licencia MIT (Permisiva y de libre uso).")
+                .website("https://github.com/Miguel-Ubilla/Papel")
+                .issue_url("https://github.com/Miguel-Ubilla/Papel/issues")
                 .build();
             about.present();
         });

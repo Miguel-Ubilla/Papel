@@ -36,8 +36,8 @@ Section: utils
 Priority: optional
 Architecture: ${ARCH}
 Depends: libc6, libgtk-4-1, libadwaita-1-0
-Maintainer: Miguel
-Homepage: https://github.com/miguel/papel
+Maintainer: Miguel Ubilla
+Homepage: https://github.com/Miguel-Ubilla/Papel
 Description: Bloc de notas nativo, rapido y seguro para Ubuntu
  Papel es un editor de texto gráfico moderno escrito en Rust con GTK4 y Libadwaita.
  Incluye soporte para pestañas múltiples, búsqueda con resaltado visual interactivo
