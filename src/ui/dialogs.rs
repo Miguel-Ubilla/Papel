@@ -6,6 +6,8 @@ use gtk4::prelude::*;
 #[allow(deprecated)]
 use gtk4::{FileChooserAction, FileChooserDialog, ResponseType, Window};
 
+use crate::i18n::I18n;
+
 #[allow(deprecated)]
 pub struct DialogHelper;
 
@@ -15,13 +17,14 @@ impl DialogHelper {
     where
         F: FnOnce(PathBuf) + 'static,
     {
+        let i18n = I18n::get();
         let dialog = FileChooserDialog::new(
-            Some("Abrir archivo"),
+            Some(i18n.open_dialog_title),
             Some(parent),
             FileChooserAction::Open,
             &[
-                ("Cancelar", ResponseType::Cancel),
-                ("Abrir", ResponseType::Accept),
+                (i18n.btn_cancel, ResponseType::Cancel),
+                (i18n.btn_open, ResponseType::Accept),
             ],
         );
         dialog.set_modal(true);
@@ -57,13 +60,14 @@ impl DialogHelper {
     ) where
         F: FnOnce(PathBuf) + 'static,
     {
+        let i18n = I18n::get();
         let dialog = FileChooserDialog::new(
-            Some("Guardar como"),
+            Some(i18n.save_as_dialog_title),
             Some(parent),
             FileChooserAction::Save,
             &[
-                ("Cancelar", ResponseType::Cancel),
-                ("Guardar", ResponseType::Accept),
+                (i18n.btn_cancel, ResponseType::Cancel),
+                (i18n.btn_save, ResponseType::Accept),
             ],
         );
         dialog.set_modal(true);

@@ -10,6 +10,7 @@ use gtk4::{
 use libadwaita::prelude::*;
 use libadwaita::{Application, ApplicationWindow, Banner, HeaderBar};
 
+use crate::i18n::I18n;
 use crate::model::document::DocumentMetadata;
 use crate::storage::recovery::RecoveryManager;
 use crate::ui::dialogs::DialogHelper;
@@ -27,9 +28,11 @@ pub struct PapelApp {
 
 impl PapelApp {
     pub fn build(app: &Application) -> Self {
+        let i18n = I18n::get();
+
         let window = ApplicationWindow::builder()
             .application(app)
-            .title("Papel")
+            .title(i18n.app_title)
             .default_width(850)
             .default_height(600)
             .build();
@@ -39,8 +42,8 @@ impl PapelApp {
         let search_bar = Rc::new(EditorSearchBar::new());
 
         let banner = Banner::builder()
-            .title("Se recuperaron documentos no guardados de una sesión anterior.")
-            .button_label("Entendido")
+            .title(i18n.banner_recovered_title)
+            .button_label(i18n.banner_understood_btn)
             .build();
 
         let banner_clone = banner.clone();
@@ -56,45 +59,45 @@ impl PapelApp {
 
         // Botón Nueva Pestaña (+)
         let new_tab_btn = Button::from_icon_name("tab-new-symbolic");
-        new_tab_btn.set_tooltip_text(Some("Nuevo documento (Ctrl+N)"));
+        new_tab_btn.set_tooltip_text(Some(i18n.new_tab_tooltip));
         header.pack_start(&new_tab_btn);
 
         // Botón Abrir
         let open_btn = Button::from_icon_name("document-open-symbolic");
-        open_btn.set_tooltip_text(Some("Abrir archivo (Ctrl+O)"));
+        open_btn.set_tooltip_text(Some(i18n.open_tooltip));
         header.pack_start(&open_btn);
 
         // Botón Guardar
         let save_btn = Button::from_icon_name("document-save-symbolic");
-        save_btn.set_tooltip_text(Some("Guardar (Ctrl+S)"));
+        save_btn.set_tooltip_text(Some(i18n.save_tooltip));
         header.pack_start(&save_btn);
 
         // Botón Búsqueda
         let search_btn = Button::from_icon_name("edit-find-symbolic");
-        search_btn.set_tooltip_text(Some("Buscar (Ctrl+F)"));
+        search_btn.set_tooltip_text(Some(i18n.search_tooltip));
         header.pack_end(&search_btn);
 
         // Menú secundario (Hamburguesa)
         let menu_model = gio::Menu::new();
-        menu_model.append(Some("Restaurar sesión anterior"), Some("app.restore-session"));
-        menu_model.append(Some("Guardar como..."), Some("app.save-as"));
-        menu_model.append(Some("Cerrar pestaña"), Some("app.close-tab"));
+        menu_model.append(Some(i18n.restore_session), Some("app.restore-session"));
+        menu_model.append(Some(i18n.save_as), Some("app.save-as"));
+        menu_model.append(Some(i18n.close_tab), Some("app.close-tab"));
 
         let edit_section = gio::Menu::new();
-        edit_section.append(Some("Cortar"), Some("app.cut"));
-        edit_section.append(Some("Copiar"), Some("app.copy"));
-        edit_section.append(Some("Pegar"), Some("app.paste"));
-        menu_model.append_section(Some("Edición"), &edit_section);
+        edit_section.append(Some(i18n.cut), Some("app.cut"));
+        edit_section.append(Some(i18n.copy), Some("app.copy"));
+        edit_section.append(Some(i18n.paste), Some("app.paste"));
+        menu_model.append_section(Some(i18n.edit_section), &edit_section);
 
         let help_section = gio::Menu::new();
-        help_section.append(Some("Acerca de Papel"), Some("app.about"));
+        help_section.append(Some(i18n.about_app), Some("app.about"));
         menu_model.append_section(None, &help_section);
 
         let popover = PopoverMenu::from_model(Some(&menu_model));
         let menu_btn = MenuButton::builder()
             .icon_name("open-menu-symbolic")
             .popover(&popover)
-            .tooltip_text("Opciones adicionales")
+            .tooltip_text(i18n.more_options_tooltip)
             .build();
         header.pack_end(&menu_btn);
 
@@ -137,9 +140,10 @@ impl PapelApp {
         save_btn: &Button,
         search_btn: &Button,
     ) {
+        let i18n = I18n::get();
         let tab_mgr = self.tab_manager.clone();
         new_tab_btn.connect_clicked(move |_| {
-            let meta = DocumentMetadata::new_empty("Sin título".to_string());
+            let meta = DocumentMetadata::new_empty(i18n.untitled.to_string());
             tab_mgr.add_tab(meta, "", true);
         });
 
@@ -152,7 +156,7 @@ impl PapelApp {
                     let title = path
                         .file_name()
                         .and_then(|n| n.to_str())
-                        .unwrap_or("documento.txt")
+                        .unwrap_or(i18n.default_doc_filename)
                         .to_string();
                     let meta = DocumentMetadata::from_file(path, title);
                     tab_mgr_inner.add_tab(meta, &content, true);
@@ -181,7 +185,7 @@ impl PapelApp {
                     if total > 0 {
                         sb_clone.set_matches_text(Some(&format!("{}/{}", idx, total)));
                     } else {
-                        sb_clone.set_matches_text(Some("0 coincidencias"));
+                        sb_clone.set_matches_text(Some(i18n.zero_matches));
                     }
                 } else {
                     sb_clone.set_matches_text(None);
@@ -198,7 +202,7 @@ impl PapelApp {
                     if total > 0 {
                         sb_clone2.set_matches_text(Some(&format!("{}/{}", idx, total)));
                     } else {
-                        sb_clone2.set_matches_text(Some("0 coincidencias"));
+                        sb_clone2.set_matches_text(Some(i18n.zero_matches));
                     }
                 }
             }
@@ -213,7 +217,7 @@ impl PapelApp {
                     if total > 0 {
                         sb_clone3.set_matches_text(Some(&format!("{}/{}", idx, total)));
                     } else {
-                        sb_clone3.set_matches_text(Some("0 coincidencias"));
+                        sb_clone3.set_matches_text(Some(i18n.zero_matches));
                     }
                 }
             }
@@ -243,7 +247,7 @@ impl PapelApp {
                             if total > 0 {
                                 sb_tab_switch.set_matches_text(Some(&format!("{}/{}", idx, total)));
                             } else {
-                                sb_tab_switch.set_matches_text(Some("0 coincidencias"));
+                                sb_tab_switch.set_matches_text(Some(i18n.zero_matches));
                             }
                         }
                     }
@@ -262,7 +266,7 @@ impl PapelApp {
 
             // Si se cerraron todas las pestañas, abrir una vacía
             if view.n_pages() == 0 {
-                let meta = DocumentMetadata::new_empty("Sin título".to_string());
+                let meta = DocumentMetadata::new_empty(i18n.untitled.to_string());
                 tab_mgr7.add_tab(meta, "", true);
             }
 
@@ -271,6 +275,7 @@ impl PapelApp {
     }
 
     fn setup_actions(&self, app: &Application) {
+        let i18n = I18n::get();
         let tab_mgr_restore = self.tab_manager.clone();
         let recovery_mgr_restore = self.recovery_mgr.clone();
         let banner_restore = self.banner.clone();
@@ -282,7 +287,7 @@ impl PapelApp {
                         let select = i == active_idx;
                         tab_mgr_restore.add_tab(tab_data.metadata, &tab_data.content, select);
                     }
-                    banner_restore.set_title("Se restauraron las pestañas de la sesión respaldada.");
+                    banner_restore.set_title(i18n.banner_restored_title);
                     banner_restore.set_revealed(true);
                 }
             }
@@ -340,13 +345,13 @@ impl PapelApp {
         about_action.connect_activate(move |_, _| {
             let about = libadwaita::AboutWindow::builder()
                 .transient_for(&win_about)
-                .application_name("Papel")
+                .application_name(i18n.app_title)
                 .application_icon("io.github.papel.editor")
                 .developer_name("Miguel Ubilla")
-                .version("0.1.0-beta")
-                .comments("Bloc de notas moderno, rápido y seguro con pestañas, búsqueda y recuperación ante cortes de energía.")
+                .version("0.2.0-beta")
+                .comments(i18n.about_comments)
                 .license_type(gtk4::License::MitX11)
-                .copyright("© 2026 Miguel Ubilla. Licencia MIT (Permisiva y de libre uso).")
+                .copyright(i18n.about_copyright)
                 .website("https://github.com/Miguel-Ubilla/Papel")
                 .issue_url("https://github.com/Miguel-Ubilla/Papel/issues")
                 .build();
@@ -356,6 +361,7 @@ impl PapelApp {
     }
 
     fn setup_keyboard_shortcuts(&self) {
+        let i18n = I18n::get();
         let key_controller = EventControllerKey::new();
         let tab_mgr = self.tab_manager.clone();
         let win = self.window.clone();
@@ -368,7 +374,7 @@ impl PapelApp {
             if is_ctrl {
                 match key {
                     Key::n | Key::N => {
-                        let meta = DocumentMetadata::new_empty("Sin título".to_string());
+                        let meta = DocumentMetadata::new_empty(i18n.untitled.to_string());
                         tab_mgr.add_tab(meta, "", true);
                         return glib::Propagation::Stop;
                     }
@@ -379,7 +385,7 @@ impl PapelApp {
                                 let title = path
                                     .file_name()
                                     .and_then(|n| n.to_str())
-                                    .unwrap_or("documento.txt")
+                                    .unwrap_or(i18n.default_doc_filename)
                                     .to_string();
                                 let meta = DocumentMetadata::from_file(path, title);
                                 tab_mgr_inner.add_tab(meta, &content, true);
@@ -433,6 +439,7 @@ impl PapelApp {
 
     /// Restaura sesión anterior si existía (corte de energía o fallo previo) o inicia una pestaña vacía.
     fn load_initial_session(&self) {
+        let i18n = I18n::get();
         if let Some((recovered_tabs, active_idx)) = self.recovery_mgr.load_recovered_session() {
             let has_content = recovered_tabs.iter().any(|t| !t.content.is_empty() || t.metadata.is_dirty);
             if has_content {
@@ -446,7 +453,7 @@ impl PapelApp {
         }
 
         // Si no hay sesión previa para restaurar, abrir pestaña en blanco
-        let meta = DocumentMetadata::new_empty("Sin título".to_string());
+        let meta = DocumentMetadata::new_empty(i18n.untitled.to_string());
         self.tab_manager.add_tab(meta, "", true);
     }
 

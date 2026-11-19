@@ -5,7 +5,7 @@ GREEN='\033[0;32m'
 BLUE='\033[0;34m'
 NC='\033[0m'
 
-VERSION="0.1.0-beta"
+VERSION="0.2.0-beta"
 ARCH="amd64"
 PKG_NAME="papel"
 OUTPUT_DIR="dist"

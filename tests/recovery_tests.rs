@@ -37,3 +37,24 @@ fn test_recovery_lifecycle() {
     // Limpiar directorio de test
     let _ = fs::remove_dir_all(test_dir);
 }
+
+#[test]
+fn test_i18n_languages() {
+    use papel::i18n::{I18n, Language};
+
+    let es = I18n::for_language(Language::Spanish);
+    assert_eq!(es.untitled, "Sin título");
+    assert_eq!(es.btn_cancel, "Cancelar");
+
+    let en = I18n::for_language(Language::English);
+    assert_eq!(en.untitled, "Untitled");
+    assert_eq!(en.btn_cancel, "Cancel");
+
+    let pt = I18n::for_language(Language::Portuguese);
+    assert_eq!(pt.untitled, "Sem título");
+    assert_eq!(pt.btn_cancel, "Cancelar");
+
+    let fr = I18n::for_language(Language::French);
+    assert_eq!(fr.untitled, "Sans titre");
+    assert_eq!(fr.btn_cancel, "Annuler");
+}

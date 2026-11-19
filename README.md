@@ -4,11 +4,13 @@
 
 **Un editor de texto moderno, ligero y a prueba de fallos para Ubuntu / GNOME, escrito en Rust.**
 
+[🇪🇸 Español](README.md) | [🇬🇧 English](README_EN.md)
+
 [![Rust](https://img.shields.io/badge/Rust-1.80%2B-orange.svg?logo=rust)](https://www.rust-lang.org/)
 [![GTK4](https://img.shields.io/badge/GTK-4.14-blue.svg?logo=gnome)](https://www.gtk.org/)
 [![Libadwaita](https://img.shields.io/badge/Libadwaita-1.5-blue.svg)](https://gnome.pages.gitlab.gnome.org/libadwaita/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
-[![Download .deb](https://img.shields.io/badge/Descargar-.deb%20(316%20KB)-brightgreen.svg)](https://github.com/Miguel-Ubilla/Papel/raw/main/dist/papel_0.1.0-beta_amd64.deb)
+[![Download .deb](https://img.shields.io/badge/Descargar-.deb%20(325%20KB)-brightgreen.svg)](https://github.com/Miguel-Ubilla/Papel/raw/main/dist/papel_0.2.0-beta_amd64.deb)
 
 *Rápido como un bloc de notas tradicional, pero con la elegancia nativa de GNOME y protección total contra cortes de energía.*
 
@@ -28,6 +30,7 @@
   * Resalta **todas las apariciones en amarillo** y la coincidencia activa en **naranja vibrante**.
   * Navegación fluida con `Enter` (siguiente) y `Shift + Enter` (anterior) con conteo en tiempo real (`3/12`).
 * ✂️ **Edición Estándar y Portapapeles:** Soporte total de Copiar, Cortar y Pegar mediante menú contextual y atajos universales.
+* 🌐 **Soporte Multi-Idioma Automático (i18n):** Se adapta solo al idioma de tu Sistema Operativo (Español, Inglés, Portugués y Francés).
 * 🎨 **Diseño Moderno de Ubuntu:** Integración 100% nativa con esquemas claros y oscuros del sistema y tipografías del entorno.
 * 📦 **Super Ligero:** Binario nativo compilado de ~1 MB que inicia en milisegundos y consume una fracción ínfima de memoria RAM.
 
@@ -58,13 +61,13 @@
 
 El paquete oficial precompilado está disponible en la carpeta [`dist/`](dist/):
 
-📦 **[Descargar papel_0.1.0-beta_amd64.deb](https://github.com/Miguel-Ubilla/Papel/raw/main/dist/papel_0.1.0-beta_amd64.deb)** *(316 KB)*
+📦 **[Descargar papel_0.2.0-beta_amd64.deb](https://github.com/Miguel-Ubilla/Papel/raw/main/dist/papel_0.2.0-beta_amd64.deb)** *(325 KB)*
 
 #### ¿Cómo instalarlo tras descargarlo?
 * **Gráficamente:** Haz doble clic sobre el archivo descargado para abrirlo con el instalador de paquetes de Ubuntu.
 * **O desde la terminal:**
   ```bash
-  sudo apt install ./dist/papel_0.1.0-beta_amd64.deb
+  sudo apt install ./dist/papel_0.2.0-beta_amd64.deb
   ```
 
 ---
@@ -108,7 +111,7 @@ chmod +x build-deb.sh
 ./build-deb.sh
 ```
 
-Esto generará el archivo `papel_0.1.0-beta_amd64.deb` listo para compartir.
+Esto generará el archivo `dist/papel_0.2.0-beta_amd64.deb` listo para compartir.
 
 ---
 

@@ -6,6 +6,7 @@ use gtk4::{
     Box as GtkBox, Button, Label, Orientation, SearchBar, SearchEntry, TextBuffer,
     TextSearchFlags, TextView,
 };
+use crate::i18n::I18n;
 
 const TAG_MATCH: &str = "search_match";
 const TAG_CURRENT: &str = "search_current";
@@ -19,6 +20,7 @@ pub struct EditorSearchBar {
 
 impl EditorSearchBar {
     pub fn new() -> Self {
+        let i18n = I18n::get();
         let container = SearchBar::builder()
             .show_close_button(true)
             .build();
@@ -30,15 +32,15 @@ impl EditorSearchBar {
         box_widget.set_margin_bottom(4);
 
         let entry = SearchEntry::builder()
-            .placeholder_text("Buscar en documento...")
+            .placeholder_text(i18n.search_placeholder)
             .width_request(240)
             .build();
 
         let prev_btn = Button::from_icon_name("go-up-symbolic");
-        prev_btn.set_tooltip_text(Some("Anterior (Shift+Enter)"));
+        prev_btn.set_tooltip_text(Some(i18n.prev_match_tooltip));
 
         let next_btn = Button::from_icon_name("go-down-symbolic");
-        next_btn.set_tooltip_text(Some("Siguiente (Enter)"));
+        next_btn.set_tooltip_text(Some(i18n.next_match_tooltip));
 
         let matches_label = Label::new(None);
         matches_label.add_css_class("dim-label");

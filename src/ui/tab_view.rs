@@ -8,6 +8,7 @@ use gtk4::prelude::*;
 use gtk4::{ScrolledWindow, TextBuffer, TextView, WrapMode};
 use libadwaita::{TabBar, TabPage, TabView};
 
+use crate::i18n::I18n;
 use crate::model::document::DocumentMetadata;
 use crate::storage::recovery::TabSnapshot;
 
@@ -136,7 +137,7 @@ impl EditorTabManager {
         let file_name = path
             .file_name()
             .and_then(|n| n.to_str())
-            .unwrap_or("documento.txt")
+            .unwrap_or(I18n::get().default_doc_filename)
             .to_string();
 
         let mut meta = active.metadata.borrow_mut();
